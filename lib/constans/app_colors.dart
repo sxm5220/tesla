@@ -1,6 +1,43 @@
 import 'package:flutter/material.dart';
 
 class AppColors {
+  static const LinearGradient kCardGradient = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color.fromARGB(255, 40, 40, 50),
+        Color.fromARGB(255, 40, 40, 45),
+      ]);
+
+  static const LinearGradient kStatsGradient = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        kSecondaryColor,
+        kPrimaryColor,
+      ]);
+
+  static const LinearGradient kBackGroundGradient = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color.fromARGB(255, 78, 78, 92),
+        Color.fromARGB(255, 43, 46, 56),
+      ]);
+
+  static const Color neumorphicBackgroundColor = Color(0xff1C1F22);
+  static const Color appBarBackgroundColor = Color(0xFF2F353A);
+  static const Color neumorphicBackgroundColorbtnBlue = Color(0xff058DD9);
+  static const Color neumorphicShadowDarkColor = Color(0xff475057);
+  static const Color infoBackgroundColor = Color(0xFF1E2328);
+  static const Color neumorphicShadowDarkColorEmboss = Color(0xFF424750);
+  static const Color neumorphicShadowLightColor = Color(0xFF424750);
+  static const Color neumorphicBorderColor = Color(0x26000000);
+  static const Color neumorphicBorderColorBtnBlue = Color(0xFF10A8FC);
+  static const Color kBottomAppBarColor = Color.fromARGB(255, 49, 52, 63);
+  static const Color kPrimaryColor = Color(0xFF9EECD9);
+  static const Color kSecondaryColor = Color.fromARGB(255, 107, 200, 252);
+
   /// dark version
   static const backgroundDark = Color(0xFF24272C);
   static const darkShadowDark = Color(0xFF000000);

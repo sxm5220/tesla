@@ -3,6 +3,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
+import 'package:tesla/pages/home/widgets/LineChartChargeHistory.dart';
 // import 'package:tesla/pages/chatGPT/sy_chatpgt_provider.dart';
 import 'package:tesla/route/sy_route.dart';
 import 'package:tesla/utils/sy_app_theme.dart';
@@ -39,48 +41,52 @@ class MyApp extends StatelessWidget {
         // minTextAdapt: true, //是否根据宽度和高度的最小值调整文本
         // splitScreenMode: true, //支持分屏
         builder: (context, child) {
-          return GetMaterialApp(
-            debugShowCheckedModeBanner: true, // 关闭 debug 标签
-            supportedLocales: S.delegate.supportedLocales, //多语言国际化 支持语系
-            localizationsDelegates: const [
-              GlobalMaterialLocalizations.delegate, //Material 组件的翻译回调
-              GlobalWidgetsLocalizations.delegate, //普通 Widget 的翻译回调
-              GlobalCupertinoLocalizations.delegate, //Cupertino 组件的翻译回调
-              S.delegate, //应用程序的翻译回调
-            ],
-            localeResolutionCallback: (locale, supportedLocales) {
-              syPrint('当前语言环境：${locale?.languageCode}');
-              SyGlobal.currentLanguage = locale?.languageCode ?? 'en';
-              if (locale?.languageCode == 'zh') {
-                return const Locale('zh', 'CN');
-              } else {
-                return const Locale('en', 'US');
-              }
-            },
-            //title国际化回调
-            onGenerateTitle: (context) {
-              return SyMultiLanguage.multiLanguage(context: context)
-                  .sy_app_name;
-            },
-            builder: (context, child) {
-              //builder绑定多个
-              child = easyLoading(context, child);
-              child = MediaQuery(
-                //设置文字大小不随系统设置改变
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                child: child,
-              );
-              return child;
-            },
-            //主题样式
-            theme: AppTheme.basic(fontFamily: AppTextStyles.fontFamily),
-            navigatorObservers: [routeObserver],
-            initialRoute: SyRoute.main, //开屏图app
-            getPages: SyRoute.routes,
-            navigatorKey: SyGlobal
-                .navigatorKey, //全局获取 BuildContext  DnsysGlobal.navigatorKey.currentState!.context
-            // home: const SyMainPage(),
-          );
+          return MultiProvider(
+              providers: [
+                ChangeNotifierProvider(create: (_) => StatsModel()),
+              ],
+              child: GetMaterialApp(
+                debugShowCheckedModeBanner: true, // 关闭 debug 标签
+                supportedLocales: S.delegate.supportedLocales, //多语言国际化 支持语系
+                localizationsDelegates: const [
+                  GlobalMaterialLocalizations.delegate, //Material 组件的翻译回调
+                  GlobalWidgetsLocalizations.delegate, //普通 Widget 的翻译回调
+                  GlobalCupertinoLocalizations.delegate, //Cupertino 组件的翻译回调
+                  S.delegate, //应用程序的翻译回调
+                ],
+                localeResolutionCallback: (locale, supportedLocales) {
+                  syPrint('当前语言环境：${locale?.languageCode}');
+                  SyGlobal.currentLanguage = locale?.languageCode ?? 'en';
+                  if (locale?.languageCode == 'zh') {
+                    return const Locale('zh', 'CN');
+                  } else {
+                    return const Locale('en', 'US');
+                  }
+                },
+                //title国际化回调
+                onGenerateTitle: (context) {
+                  return SyMultiLanguage.multiLanguage(context: context)
+                      .sy_app_name;
+                },
+                builder: (context, child) {
+                  //builder绑定多个
+                  child = easyLoading(context, child);
+                  child = MediaQuery(
+                    //设置文字大小不随系统设置改变
+                    data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                    child: child,
+                  );
+                  return child;
+                },
+                //主题样式
+                theme: AppTheme.basic(fontFamily: AppTextStyles.fontFamily),
+                navigatorObservers: [routeObserver],
+                initialRoute: SyRoute.main, //开屏图app
+                getPages: SyRoute.routes,
+                navigatorKey: SyGlobal
+                    .navigatorKey, //全局获取 BuildContext  DnsysGlobal.navigatorKey.currentState!.context
+                // home: const SyMainPage(),
+              ));
         });
   }
 }

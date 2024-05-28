@@ -5,6 +5,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 import 'package:tesla/pages/home/sy_home_page.dart';
+import 'package:tesla/pages/home/t2.dart';
 
 import '../../constans/app_colors.dart';
 import '../../constans/assets_path.dart';
@@ -43,6 +44,7 @@ class _SyTabBarPageState extends State<SyTabBarPage>
   ///将 keepAlive 设为 false，则当ListView列表项滑出预渲染区域后则会销毁，否则不会销毁
   final _pageList = [
     const SyHomePage(),
+    const T2(),
     const SyMusicPage(),
     const SyProductPage(),
     const SyAccountPage()
@@ -155,6 +157,11 @@ class _SyTabBarPageState extends State<SyTabBarPage>
   }
 
   List<Widget> barList = [
+    SyBottomBarIconWidget(
+      image: AssetImage(ImagesPath.car),
+      isActive: false,
+      imageSize: 40.w,
+    ),
     SyBottomBarIconWidget(
       image: AssetImage(ImagesPath.car),
       isActive: false,

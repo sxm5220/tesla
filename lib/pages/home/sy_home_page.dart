@@ -7,6 +7,9 @@ import 'package:gap/gap.dart';
 import 'package:glassmorphism/glassmorphism.dart';
 import 'package:scaffold_gradient_background/scaffold_gradient_background.dart';
 import 'package:tesla/constans/assets_path.dart';
+import 'package:tesla/pages/home/widgets/GeneralHealth.dart';
+import 'package:tesla/pages/home/widgets/StatsPage.dart';
+import 'package:tesla/pages/home/widgets/sy_carCharging_widget.dart';
 import 'package:tesla/utils/sy_multi_language.dart';
 import 'package:tesla/utils/sy_public_util.dart';
 import 'package:tesla/widgets/sy_appBarBtn_widget.dart';
@@ -67,6 +70,9 @@ class _SyHomePageState extends State<SyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    var width = size.width * 0.13;
+    var height = size.height * 0.2;
     return ScaffoldGradientBackground(
       gradient: const LinearGradient(
         begin: Alignment.topCenter,
@@ -129,6 +135,10 @@ class _SyHomePageState extends State<SyHomePage> {
                     image: DecorationImage(
                         image: AssetImage(ImagesPath.teslaGrey))),
               ),
+              const StatsPage(),
+              SyCarChargingWidget(size: MediaQuery.of(context).size),
+              GeneralHealth(width: width, height: height),
+              Gap(20.w),
               const SyControlPanelWidget(),
               Gap(50.w),
               Center(

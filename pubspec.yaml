@@ -45,6 +45,11 @@ dependencies:
   sleek_circular_slider: ^2.0.1
   provider: ^6.1.2
   lottie: ^3.1.0
+  animate_do: ^3.0.2
+  page_transition: ^2.1.0
+  syncfusion_flutter_gauges: ^23.2.4
+  fl_chart: ^0.50.1
+  percent_indicator:
 
 dev_dependencies:
   flutter_test:
